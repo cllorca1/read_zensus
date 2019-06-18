@@ -1,8 +1,10 @@
 import data.BoundingBox;
 import data.DataSet;
-import data.RasterCell;
+import input.GridShapeFileReader;
 import input.PopulationAttributesReader;
 import input.PopulationReader;
+import output.GridShapeFileWriter;
+import output.OutputWriter;
 
 import java.io.FileNotFoundException;
 
@@ -23,6 +25,14 @@ public class RunZensusReader {
         String ppAttributesFile = baseDirectory + "Bevoelkerung100M.csv";
         PopulationAttributesReader populationAttributesReader = new PopulationAttributesReader(dataSet);
         populationAttributesReader.read(ppAttributesFile, ";");
+
+        String shpFile = baseDirectory + "shp_28_44/100kmN28E44_DE_Grid_ETRS89-LAEA_100m.shp";
+        GridShapeFileReader gridShapeFileReader = new GridShapeFileReader(dataSet);
+        gridShapeFileReader.readFeatures(shpFile, "id" );
+
+        String outShpFile = baseDirectory + "shp_28_44/zones_with_population.shp";
+        GridShapeFileWriter gridShapeFileWriter = new GridShapeFileWriter(dataSet);
+        gridShapeFileWriter.writeShapefileOfZonesWithPopulation(outShpFile);
 
         OutputWriter.printOutRasterCellsWithPopulation(dataSet, baseDirectory + "zonalDataSummary.csv");
 

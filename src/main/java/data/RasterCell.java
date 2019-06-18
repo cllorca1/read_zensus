@@ -1,6 +1,7 @@
 package data;
 
 import org.locationtech.jts.geom.Coordinate;
+import org.opengis.feature.simple.SimpleFeature;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class RasterCell {
     private final Map<String, Integer> attributesConfidence = new HashMap<String, Integer>();
 
     private static List<String> listOfAttributes = new ArrayList<String>();
+    private SimpleFeature feature;
 
     public void addAttribute(String key, int value) {
         attributes.put(key, value);
@@ -67,4 +69,11 @@ public class RasterCell {
     }
 
 
+    public void setFeature(SimpleFeature feature) {
+        this.feature = feature;
+    }
+
+    public SimpleFeature getFeature() {
+        return feature;
+    }
 }

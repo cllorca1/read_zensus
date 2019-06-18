@@ -1,3 +1,5 @@
+package output;
+
 import data.DataSet;
 import data.RasterCell;
 

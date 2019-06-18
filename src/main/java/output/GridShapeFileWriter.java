@@ -28,7 +28,6 @@ public class GridShapeFileWriter {
                 SimpleFeature feature = rasterCell.getFeature();
                 //feature.setAttribute("population", rasterCell.getPopulation());
                 if (feature != null){
-                    feature.setAttribute("population", rasterCell.getPopulation());
                     features.add(feature);
                 }
 

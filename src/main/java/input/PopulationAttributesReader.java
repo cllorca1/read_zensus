@@ -32,9 +32,6 @@ public class PopulationAttributesReader extends GenericCSVReader {
             rasterCell.addAttribute(attributeName + "_" + attributeCategory, number);
             rasterCell.addAttributesConfidence(attributeName + "_" + attributeCategory, numberConfindence);
 
-
-
-
         }
 
 

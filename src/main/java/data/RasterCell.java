@@ -54,14 +54,27 @@ public class RasterCell {
 
     }
 
-    @Override
-    public String toString(){
+    public String printOutAttributesInLine(){
         StringBuilder builder = new StringBuilder();
         builder.append(id).append(",").append(coordinate.x).append(",").append(coordinate.y).append(",").append(population);
 
         for (String key : listOfAttributes){
             builder.append(",");
             builder.append(attributes.get(key));
+        }
+
+        return builder.toString();
+
+    }
+
+
+    public String printOutAttributeConfidenceInLine(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(id).append(",").append(coordinate.x).append(",").append(coordinate.y).append(",").append(population);
+
+        for (String key : listOfAttributes){
+            builder.append(",");
+            builder.append(attributesConfidence.get(key));
         }
 
         return builder.toString();

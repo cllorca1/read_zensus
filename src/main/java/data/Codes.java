@@ -16,6 +16,4 @@ public class Codes {
 
     public final static String[] CODES_POPULATION_ATTRIBUTES = new String[]{ID, MERKMAL_CODE, MERKMAL_LEVEL, MERKMAL_N, MERKMAL_N_CONFIDENCE};
 
-
-
 }

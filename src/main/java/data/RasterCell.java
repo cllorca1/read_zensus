@@ -22,7 +22,11 @@ public class RasterCell {
 
     public void addAttribute(String key, int value) {
         attributes.put(key, value);
-        if (!listOfAttributes.contains(key)){
+
+    }
+
+    public static void registerAttribute( String key) {
+        if (!listOfAttributes.contains(key)) {
             listOfAttributes.add(key);
         }
     }

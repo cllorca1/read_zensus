@@ -9,7 +9,10 @@ import org.apache.log4j.Logger;
 import output.GridShapeFileWriter;
 import output.OutputWriter;
 
+import javax.annotation.Resources;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 
 
 public class RunZensusReader {
@@ -27,7 +30,9 @@ public class RunZensusReader {
         String baseDirectory = "c:/projects/radLast/data/zensus/";
         String ppFile = baseDirectory + "Zensus_Bevoelkerung_100m-Gitter.csv";
 
-        new DictionaryReader(dataSet).read(baseDirectory + "dictionary.csv", ",");
+        ClassLoader classLoader = RunZensusReader.class.getClassLoader();
+        String fileName = new File(classLoader.getResource("dictionary.csv").getFile()).getAbsolutePath();
+        new DictionaryReader(dataSet).read(fileName, ",");
 
         PopulationReader populationReader = new PopulationReader(dataSet);
         populationReader.read(ppFile, ";");
@@ -37,7 +42,7 @@ public class RunZensusReader {
 
         String[] attributeFiles = new String[]{"Bevoelkerung100M.csv",
                 "Familie100m.csv",
-                "Geb100m.csv",
+                //"Geb100m.csv",
                 "Haushalte100m.csv",
                 "Wohnungen100m.csv"
         };
@@ -45,14 +50,14 @@ public class RunZensusReader {
         //the different files have different delimiters (specified in the same order as the file names)
         String[] delimiters = new String[]{";",
                 ",",
-                ",",
+                //",",
                 ",",
                 ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)" //this splits by comma if comma is not between quotes
         };
 
         String[] unitTypes = new String[]{"PP",
                 "FF",
-                "GG",
+                //"GG",
                 "HH",
                 "DD"
         };

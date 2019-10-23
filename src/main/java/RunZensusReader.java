@@ -22,13 +22,17 @@ public class RunZensusReader {
     public static void main(String[] args) throws FileNotFoundException {
 
         //define bounding box in the reference system of the raster cells (
-        BoundingBox bb = new BoundingBox(4442677, 2855076, 4507382, 2907901);
+        BoundingBox bb = new BoundingBox(4357150, 2721533, 4511356, 2886574);
         DataSet dataSet = new DataSet(bb);
 
 
 
-        String baseDirectory = "c:/projects/radLast/data/zensus/";
-        String ppFile = baseDirectory + "Zensus_Bevoelkerung_100m-Gitter.csv";
+        String baseDirectory = "c:/data/zensus2011/";
+        String shapeDirectory = baseDirectory + "out/shapes/";
+        //String shapeDirectory = baseDirectory + "grid/Lambert/DE_Grid_ETRS89-LAEA_100m.shape/";
+        String dataDirectory = baseDirectory + "data/";
+        String outputDirectory = baseDirectory + "out/";
+        String ppFile = dataDirectory + "Zensus_Bevoelkerung_100m-Gitter.csv";
 
         ClassLoader classLoader = RunZensusReader.class.getClassLoader();
         String fileName = new File(classLoader.getResource("dictionary.csv").getFile()).getAbsolutePath();
@@ -68,7 +72,7 @@ public class RunZensusReader {
 
         for (int i=0; i < attributeFiles.length; i++) {
             logger.warn("Reading " + attributeFiles[i]);
-            ppAttributesFile = baseDirectory + attributeFiles[i];
+            ppAttributesFile = dataDirectory + attributeFiles[i];
             populationAttributesReader = new PopulationAttributesReader(dataSet, unitTypes[i]);
             populationAttributesReader.read(ppAttributesFile, delimiters[i]);
         }
@@ -76,27 +80,40 @@ public class RunZensusReader {
         String shpFile;
         GridShapeFileReader gridShapeFileReader;
 
-        shpFile = baseDirectory + "shp_28_44/100kmN28E44_DE_Grid_ETRS89-LAEA_100m.shp";
+/*        shpFile = shapeDirectory + "muc100by100TAZ.shp";
+        gridShapeFileReader = new GridShapeFileReader(dataSet);
+        gridShapeFileReader.readFeatures(shpFile, "id");*/
+
+        shpFile = shapeDirectory + "n27e43.shp";
         gridShapeFileReader = new GridShapeFileReader(dataSet);
         gridShapeFileReader.readFeatures(shpFile, "id");
 
-        shpFile = baseDirectory + "shp_28_45/100kmN28E45_DE_Grid_ETRS89-LAEA_100m.shp";
+        shpFile = shapeDirectory + "n27e44_.shp";
         gridShapeFileReader = new GridShapeFileReader(dataSet);
         gridShapeFileReader.readFeatures(shpFile, "id");
 
-        shpFile = baseDirectory + "shp_29_44/100kmN29E44_DE_Grid_ETRS89-LAEA_100m.shp";
+        shpFile = shapeDirectory + "n27e45.shp";
         gridShapeFileReader = new GridShapeFileReader(dataSet);
         gridShapeFileReader.readFeatures(shpFile, "id");
 
-        shpFile = baseDirectory + "shp_29_45/100kmN29E45_DE_Grid_ETRS89-LAEA_100m.shp";
+        shpFile = shapeDirectory + "n28e43.shp";
         gridShapeFileReader = new GridShapeFileReader(dataSet);
         gridShapeFileReader.readFeatures(shpFile, "id");
 
-        String outShpFile = baseDirectory + "out/zones_with_population.shp";
+        shpFile = shapeDirectory + "n28e44_.shp";
+        gridShapeFileReader = new GridShapeFileReader(dataSet);
+        gridShapeFileReader.readFeatures(shpFile, "id");
+
+        shpFile = shapeDirectory + "n28e45_.shp";
+        gridShapeFileReader = new GridShapeFileReader(dataSet);
+        gridShapeFileReader.readFeatures(shpFile, "id");
+
+        String outShpFile = outputDirectory + "zones_with_populationMUC.shp";
         GridShapeFileWriter gridShapeFileWriter = new GridShapeFileWriter(dataSet);
         gridShapeFileWriter.writeShapefileOfZonesWithPopulation(outShpFile);
 
-        OutputWriter.printOutRasterCellsWithPopulation(dataSet, baseDirectory + "zonalDataSummary.csv", baseDirectory + "zonalConfidenceSummary.csv");
+        OutputWriter.printOutRasterCellsWithPopulation(dataSet, outputDirectory + "zonalDataSummaryMUC.csv",
+                outputDirectory + "zonalConfidenceSummaryMUC.csv");
 
 
     }

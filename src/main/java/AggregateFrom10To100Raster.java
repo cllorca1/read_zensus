@@ -38,7 +38,7 @@ public class AggregateFrom10To100Raster {
         }
 
         PrintWriter pw = new PrintWriter("C:/projects/bast_entlastung/data/lu/processed/park_raster_100.csv");
-        pw.println("id,n");
+        pw.println("cell_id,n");
         for (String code : landUseByRaster.keySet()){
             pw.println(code + "," + landUseByRaster.get(code));
         }

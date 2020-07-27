@@ -83,7 +83,7 @@ public class AssignLUToGrid {
 
         PrintWriter pw = new PrintWriter(workingDirectory + "/all_raster_100.csv");
 
-        pw.print("id");
+        pw.print("id,TAZ_id");
         for (String landUse : landUses) {
             pw.print(",");
             pw.print(landUse);

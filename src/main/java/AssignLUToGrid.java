@@ -52,8 +52,8 @@ public class AssignLUToGrid {
 
 
         String[] landUses = new String[]{"commercial", "industrial", "residential", "retail", "allotments",
-                "cemetery", /*"farm", "forest", */"grass", "heat", "meadow", "military", "natural_reserve", "orchard",
-                /*"park",*/ "quarry", "recreation_ground", "scrub", "vineyard"};
+                "cemetery", "farm", "forest", "grass", "heat", "meadow", "military", "natural_reserve", "orchard",
+                "park", "quarry", "recreation_ground", "scrub", "vineyard"};
 
 
         for (String landUse : landUses) {

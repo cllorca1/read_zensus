@@ -93,4 +93,12 @@ public class RasterCell {
     public SimpleFeature getFeature() {
         return feature;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public Map<String, Integer> getAttributes() {
+        return attributes;
+    }
 }

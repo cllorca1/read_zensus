@@ -10,6 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * This class reads the raster cell 100x100 m files and writes it as a csv adding a column of the TAZ where the raster cell
+ * is located.
+ */
+
 public class ReadGridAndAddAssignTAZ {
 
     static Logger logger = Logger.getLogger(ReadGridAndAddAssignTAZ.class);

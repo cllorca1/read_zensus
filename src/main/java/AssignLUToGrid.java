@@ -7,6 +7,11 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class merges the information of raster cells as csv format (the output of the class ReadGridAndAssignTAZ) and
+ * land uses per raster cell (the output of a process made in R that converts the osm land use files into rasters of 10x10 m
+ * resolution.
+ */
 public class AssignLUToGrid {
 
     private static Logger logger = Logger.getLogger(AssignLUToGrid.class);
@@ -26,15 +31,10 @@ public class AssignLUToGrid {
         RasterCell.registerAttribute("TAZ_id");
 
         for (int latitude = 27; latitude < 33; latitude++) {
-
             for (int longitude = 41; longitude < 45; longitude++) {
-
                 processSquare(counter, shapeDirectory, latitude, longitude);
             }
-
-
         }
-
 
         //other squares that are outside the main rectangle
         int[] latitudes = {29, 30, 31, 32, 27, 28, 29, 30, 31, 32, 33, 34, 30, 31, 32, 33, 34, 34, 34, 35, 35, 26, 28, 34, 33, 33, 33, 33, 34, 28, 35};

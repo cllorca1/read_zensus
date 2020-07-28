@@ -31,6 +31,10 @@ public class RasterCell {
         }
     }
 
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
+
     public void addAttributesConfidence(String key, int value) {
          attributesConfidence.put(key, value);
     }

@@ -56,6 +56,11 @@
                     you want to have this dependency stay with an older version of mito, you will have to put that older version on a branch and leave it there.
                     I just introduced a 0.2.x branch. But it does not work with that either. kai, jun'17	 -->
         </dependency>
+        <dependency>
+            <groupId>org.orbisgis</groupId>
+            <artifactId>cts</artifactId>
+            <version>1.4.0</version>
+        </dependency>
 
 
     </dependencies>

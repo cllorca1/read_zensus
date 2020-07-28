@@ -2,6 +2,9 @@ import data.RasterCell;
 import de.tum.bgu.msm.util.MitoUtil;
 import org.apache.log4j.Logger;
 import org.locationtech.jts.geom.Coordinate;
+import org.matsim.api.core.v01.Coord;
+import org.matsim.core.utils.geometry.CoordinateTransformation;
+import org.matsim.core.utils.geometry.transformations.TransformationFactory;
 
 import java.io.*;
 import java.util.HashMap;
@@ -21,8 +24,8 @@ public class AssignLUToGrid {
     public static void main(String[] args) throws IOException {
 
 
-        String gridDirectory = "F:/zensus2011/";
-        String shapeDirectory = gridDirectory + "grid/Lambert/DE_Grid_ETRS89-LAEA_100m.shape/";
+        String gridDirectory = "Z:/projects/2019/BASt/data/";
+        String shapeDirectory = gridDirectory + "osm_land_use/grid_100/";
         int counter = 0;
 
 
@@ -83,16 +86,28 @@ public class AssignLUToGrid {
 
         PrintWriter pw = new PrintWriter(workingDirectory + "/all_raster_100.csv");
 
-        pw.print("id,TAZ_id");
+        pw.print("id,TAZ_id,x_mp_3035,y_mp_3035,x_mp_31468,y_mp_31468");
         for (String landUse : landUses) {
             pw.print(",");
             pw.print(landUse);
         }
         pw.println();
 
+        CoordinateTransformation ct = TransformationFactory.getCoordinateTransformation("EPSG:3035", TransformationFactory.DHDN_GK4);
+
         for (RasterCell rasterCell : landUseByRaster.values()){
             pw.print(rasterCell.getId());
             pw.print(",");
+            Coordinate coordinate = rasterCell.getCoordinate();
+            Coord newCoord = ct.transform(new Coord(coordinate.x, coordinate.y));
+
+            pw.print(coordinate.x);
+            pw.print(",");
+            pw.print(coordinate.y);
+            pw.print(",");
+            pw.print(newCoord.getX());
+            pw.print(",");
+            pw.print(newCoord.getY());
             Map<String, Integer> attributes = rasterCell.getAttributes();
             pw.print(attributes.get("TAZ_id"));
             for (String landUse : landUses) {

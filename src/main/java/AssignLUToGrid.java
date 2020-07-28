@@ -108,6 +108,7 @@ public class AssignLUToGrid {
             pw.print(newCoord.getX());
             pw.print(",");
             pw.print(newCoord.getY());
+            pw.print(",");
             Map<String, Integer> attributes = rasterCell.getAttributes();
             pw.print(attributes.get("TAZ_id"));
             for (String landUse : landUses) {
